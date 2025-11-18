@@ -33,9 +33,9 @@ export default function Carousel({ imageUrl, slideCount }: CarouselProps) {
                 alt={`Slide ${index + 1}`}
                 className="absolute top-0 left-0 w-full object-cover"
                 style={{
-                  height: `${slideCount * 100}%`,
-                  objectPosition: 'center top',
-                  transform: `translateY(-${index * (100 / slideCount)}%)`,
+                  height: `${100}%`,
+                  objectPosition: 'left top',
+                  transform: `translateX(-${index * (100 / slideCount)}%)`,
                 }}
               />
             </div>
