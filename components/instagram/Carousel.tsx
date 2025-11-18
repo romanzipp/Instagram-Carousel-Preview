@@ -16,17 +16,17 @@ export default function Carousel({ slides }: CarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="relative w-full bg-black">
+    <div className="relative w-full aspect-[4/5] bg-black">
       <Swiper
         modules={[Pagination]}
         spaceBetween={0}
         slidesPerView={1}
         onSlideChange={(swiper: SwiperType) => setActiveIndex(swiper.activeIndex)}
-        className="w-full"
+        className="w-full h-full"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="w-full aspect-square flex items-center justify-center bg-black">
+            <div className="w-full h-full flex items-center justify-center bg-black">
               <img
                 src={slide}
                 alt={`Slide ${index + 1}`}
