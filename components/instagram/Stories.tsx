@@ -10,8 +10,8 @@ export default function Stories() {
     <div className="flex gap-4 pl-4 py-3 overflow-x-hidden scrollbar-hide">
       {stories.map((story, index) => (
         <div key={index} className="flex flex-col items-center gap-1 min-w-fit">
-          <div className="w-20 h-20 rounded-full p-[2.5px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
-            <div className="w-full h-full rounded-full bg-white flex items-center justify-center p-[2.5px]">
+          <div className="w-20 h-20 shrink-0 rounded-full p-[3px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+            <div className="w-full h-full rounded-full bg-white p-[3px]">
               <img
                 src={story.image}
                 alt={story.name}
