@@ -49,10 +49,10 @@ export default function PreviewPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 md:flex md:items-center md:justify-center md:p-4">
-      <div className="w-full min-h-screen md:min-h-0 md:max-w-[375px] bg-white md:rounded-3xl md:shadow-2xl overflow-hidden md:overflow-y-auto flex flex-col">
-        <Header />
-        <Stories />
-        <div className="flex-1 flex flex-col overflow-y-auto">
+      <div className="w-full h-screen md:h-auto md:max-w-[375px] md:max-h-[812px] bg-white md:rounded-3xl md:shadow-2xl overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-y-auto">
+          <Header />
+          <Stories />
           <PostHeader />
           <Carousel slides={slides} />
           <PostDetails />
