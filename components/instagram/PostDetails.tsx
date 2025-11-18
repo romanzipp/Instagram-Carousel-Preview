@@ -5,7 +5,7 @@ export default function PostDetails() {
         <span className="font-semibold mr-1">your_account</span>
         <span>Check out this carousel preview!</span>
       </div>
-      <div className="text-xs text-gray-400 uppercase">
+      <div className="text-[10px] text-gray-400">
         2 hours ago
       </div>
     </div>

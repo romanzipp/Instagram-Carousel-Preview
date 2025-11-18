@@ -36,17 +36,6 @@ export default function Carousel({ slides }: CarouselProps) {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <div className="absolute top-2 left-0 right-0 flex justify-center gap-1 z-10 px-2">
-        {slides.map((_, index) => (
-          <div
-            key={index}
-            className={`h-0.5 flex-1 rounded-full transition-all ${
-              index === activeIndex ? 'bg-white' : 'bg-gray-500'
-            }`}
-          />
-        ))}
-      </div>
     </div>
   );
 }
