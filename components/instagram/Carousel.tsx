@@ -32,7 +32,7 @@ export default function Carousel({ imageUrl, slideCount }: CarouselProps) {
               style={{
                 backgroundImage: `url(${imageUrl})`,
                 backgroundSize: 'cover',
-                backgroundPosition: `center ${(index / (slideCount - 1)) * 100}%`,
+                backgroundPosition: `${(index / (slideCount - 1)) * 100}% center`,
                 backgroundRepeat: 'no-repeat',
               }}
             />
