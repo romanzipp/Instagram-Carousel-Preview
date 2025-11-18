@@ -16,21 +16,68 @@ Preview how your multi-slide images will look in the Instagram carousel format b
 - Share previews via unique URLs
 - Mobile-first design with desktop phone frame view
 
-## Running the Project
+## Deployment
+
+### Using Pre-built Docker Image
+
+Pull and run the latest version from GitHub Container Registry:
 
 ```bash
-# Development
-npm install
-npm run dev
-
-# Docker
-docker build -t carousel-preview .
-docker run -p 3000:3000 carousel-preview
+docker pull ghcr.io/roman/carousel-preview:latest
+docker run -p 3000:3000 -v $(pwd)/uploads:/app/public/uploads ghcr.io/roman/carousel-preview:latest
 ```
 
-## Tech Stack
+Or with Docker Compose:
 
-- Next.js 14+ (App Router)
-- Tailwind CSS with Inter font
-- Swiper.js for carousel
-- Server-side file storage
+```yaml
+services:
+  app:
+    image: ghcr.io/roman/carousel-preview:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/public/uploads
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+```
+
+## Running the Project
+
+### Development
+
+```bash
+npm install
+npm run dev
+```
+
+### Docker
+
+```bash
+docker build -t carousel-preview .
+docker run -p 3000:3000 -v $(pwd)/public/uploads:/app/public/uploads carousel-preview
+```
+
+### Docker Compose
+
+Create a `docker-compose.yml` file:
+
+```yaml
+services:
+  app:
+    image: carousel-preview
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./public/uploads:/app/public/uploads
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+```
+
+Run with:
+
+```bash
+docker-compose up -d
+```
