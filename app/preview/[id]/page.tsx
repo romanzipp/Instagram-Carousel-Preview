@@ -74,7 +74,7 @@ export default function PreviewPage() {
           />
           <Carousel imageUrl={previewData.imageUrl} slideCount={previewData.slideCount} />
           <PostActions />
-          <PostDetails />
+          <PostDetails username={previewData.username} />
         </div>
         <Navigation profileImage={previewData.profileImage} />
       </div>
