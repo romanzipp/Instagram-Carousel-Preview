@@ -9,19 +9,26 @@ import Carousel from '@/components/instagram/Carousel';
 import PostActions from '@/components/instagram/PostActions';
 import PostDetails from '@/components/instagram/PostDetails';
 import Navigation from '@/components/instagram/Navigation';
-import { getPreviewData } from '@/lib/urlGenerator';
 
 export default function PreviewPage() {
   const params = useParams();
   const id = params?.id as string;
-  const [slides, setSlides] = useState<string[] | null>(null);
+  const [previewData, setPreviewData] = useState<{ imageUrl: string; slideCount: number } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (id) {
-      const data = getPreviewData(id);
-      setSlides(data);
-      setLoading(false);
+      fetch(`/api/preview/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setPreviewData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching preview:', error);
+          setPreviewData(null);
+          setLoading(false);
+        });
     }
   }, [id]);
 
@@ -33,7 +40,7 @@ export default function PreviewPage() {
     );
   }
 
-  if (!slides) {
+  if (!previewData) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 gap-4 p-6">
         <h1 className="text-2xl font-bold text-gray-900">Preview Not Found</h1>
@@ -55,7 +62,7 @@ export default function PreviewPage() {
           <Header />
           <Stories />
           <PostHeader />
-          <Carousel slides={slides} />
+          <Carousel imageUrl={previewData.imageUrl} slideCount={previewData.slideCount} />
           <PostActions />
           <PostDetails />
         </div>

@@ -9,10 +9,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 interface CarouselProps {
-  slides: string[];
+  imageUrl: string;
+  slideCount: number;
 }
 
-export default function Carousel({ slides }: CarouselProps) {
+export default function Carousel({ imageUrl, slideCount }: CarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -24,13 +25,16 @@ export default function Carousel({ slides }: CarouselProps) {
         onSlideChange={(swiper: SwiperType) => setActiveIndex(swiper.activeIndex)}
         className="w-full h-full"
       >
-        {slides.map((slide, index) => (
+        {Array.from({ length: slideCount }).map((_, index) => (
           <SwiperSlide key={index}>
-            <div className="w-full h-full flex items-center justify-center bg-black">
+            <div className="w-full h-full overflow-hidden bg-black">
               <img
-                src={slide}
+                src={imageUrl}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-contain"
+                className="w-full h-auto object-cover"
+                style={{
+                  transform: `translateY(-${(index / slideCount) * 100}%)`,
+                }}
               />
             </div>
           </SwiperSlide>

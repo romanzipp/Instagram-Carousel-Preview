@@ -2,8 +2,6 @@
 
 import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { splitImageIntoSlides } from '@/lib/imageProcessor';
-import { generateUniqueId, savePreviewData } from '@/lib/urlGenerator';
 
 export default function ImageUpload() {
   const [file, setFile] = useState<File | null>(null);
@@ -33,13 +31,24 @@ export default function ImageUpload() {
 
     setIsProcessing(true);
     try {
-      const result = await splitImageIntoSlides(file, slideCount);
-      const id = generateUniqueId();
-      savePreviewData(id, result.slides);
-      router.push(`/preview/${id}`);
+      const formData = new FormData();
+      formData.append('image', file);
+      formData.append('slideCount', slideCount.toString());
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+
+      const data = await response.json();
+      router.push(`/preview/${data.id}`);
     } catch (error) {
-      console.error('Error processing image:', error);
-      alert('Failed to process image. Please try again.');
+      console.error('Error uploading image:', error);
+      alert('Failed to upload image. Please try again.');
     } finally {
       setIsProcessing(false);
     }
