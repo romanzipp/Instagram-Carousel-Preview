@@ -9,7 +9,7 @@ Preview how your multi-slide images will look in the Instagram carousel format b
 
 ## Features
 
-- Upload a single horizontal image containing multiple slides
+- Upload a **single horizontal image** containing multiple slides
 - Select the number of slides (2-10)
 - Preview in authentic Instagram UI
 - Swipe through slides with touch/mouse gestures
