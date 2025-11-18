@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
     // Save metadata
     const metadata = {
-      imageUrl: `/uploads/${filename}`,
+      imageUrl: `/api/images/${filename}`,
       slideCount,
       username,
       profileImage,
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       id,
-      imageUrl: `/uploads/${filename}`,
+      imageUrl: `/api/images/${filename}`,
       slideCount,
       username,
       profileImage,
