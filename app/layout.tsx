@@ -10,6 +10,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Instagram Carousel Preview",
   description: "Preview your Instagram carousel posts",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light" style={{ colorScheme: 'light' }}>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
       </body>
