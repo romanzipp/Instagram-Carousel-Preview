@@ -1,4 +1,8 @@
-export default function Navigation() {
+interface NavigationProps {
+  profileImage?: string;
+}
+
+export default function Navigation({ profileImage = '/users/user_1.jpeg' }: NavigationProps) {
   return (
     <nav className="flex items-center justify-around px-4 py-3 bg-white border-t border-gray-200">
       <div className="w-6 h-6">
@@ -29,7 +33,7 @@ export default function Navigation() {
       </div>
 
       <img
-        src="/users/user_1.jpeg"
+        src={profileImage}
         alt="Profile"
         className="w-6 h-6 rounded-full object-cover"
       />

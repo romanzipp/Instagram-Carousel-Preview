@@ -10,10 +10,17 @@ import PostActions from '@/components/instagram/PostActions';
 import PostDetails from '@/components/instagram/PostDetails';
 import Navigation from '@/components/instagram/Navigation';
 
+interface PreviewData {
+  imageUrl: string;
+  slideCount: number;
+  username?: string;
+  profileImage?: string;
+}
+
 export default function PreviewPage() {
   const params = useParams();
   const id = params?.id as string;
-  const [previewData, setPreviewData] = useState<{ imageUrl: string; slideCount: number } | null>(null);
+  const [previewData, setPreviewData] = useState<PreviewData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -60,13 +67,16 @@ export default function PreviewPage() {
       <div className="w-full h-screen md:h-auto md:max-w-[375px] md:max-h-[812px] bg-white md:rounded-3xl md:shadow-2xl overflow-hidden flex flex-col">
         <div className="flex-1 overflow-y-auto">
           <Header />
-          <Stories />
-          <PostHeader />
+          <Stories profileImage={previewData.profileImage} />
+          <PostHeader
+            username={previewData.username}
+            profileImage={previewData.profileImage}
+          />
           <Carousel imageUrl={previewData.imageUrl} slideCount={previewData.slideCount} />
           <PostActions />
           <PostDetails />
         </div>
-        <Navigation />
+        <Navigation profileImage={previewData.profileImage} />
       </div>
     </div>
   );

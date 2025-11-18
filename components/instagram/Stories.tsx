@@ -1,6 +1,10 @@
-export default function Stories() {
+interface StoriesProps {
+  profileImage?: string;
+}
+
+export default function Stories({ profileImage = '/users/user_1.jpeg' }: StoriesProps) {
   const stories = [
-    { name: 'Your story', image: '/users/user_1.jpeg' },
+    { name: 'Your story', image: profileImage },
     { name: 'alex_photos', image: '/users/user_2.jpeg' },
     { name: 'jane_doe', image: '/users/user_3.jpeg' },
     { name: 'travel_life', image: '/users/user_4.jpeg' },

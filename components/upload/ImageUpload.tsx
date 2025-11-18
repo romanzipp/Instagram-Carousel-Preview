@@ -3,9 +3,20 @@
 import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
+const PROFILE_IMAGES = [
+  '/users/user_1.jpeg',
+  '/users/user_2.jpeg',
+  '/users/user_3.jpeg',
+  '/users/user_4.jpeg',
+  '/users/user_5.jpeg',
+  '/users/user_kvfd.jpeg',
+];
+
 export default function ImageUpload() {
   const [file, setFile] = useState<File | null>(null);
   const [slideCount, setSlideCount] = useState<number>(3);
+  const [username, setUsername] = useState<string>('dielinkefulda');
+  const [profileImage, setProfileImage] = useState<string>('/users/user_kvfd.jpeg');
   const [isProcessing, setIsProcessing] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   const router = useRouter();
@@ -34,6 +45,8 @@ export default function ImageUpload() {
       const formData = new FormData();
       formData.append('image', file);
       formData.append('slideCount', slideCount.toString());
+      formData.append('username', username);
+      formData.append('profileImage', profileImage);
 
       const response = await fetch('/api/upload', {
         method: 'POST',
@@ -75,6 +88,45 @@ export default function ImageUpload() {
           <img src={preview} alt="Preview" className="w-full h-auto" />
         </div>
       )}
+
+      <div className="w-full">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Username
+        </label>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter username"
+          className="block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+
+      <div className="w-full">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Profile Image
+        </label>
+        <div className="grid grid-cols-3 gap-3">
+          {PROFILE_IMAGES.map((imagePath) => (
+            <button
+              key={imagePath}
+              type="button"
+              onClick={() => setProfileImage(imagePath)}
+              className={`relative aspect-square rounded-full overflow-hidden border-4 transition-all ${
+                profileImage === imagePath
+                  ? 'border-blue-500 scale-95'
+                  : 'border-transparent hover:border-gray-300'
+              }`}
+            >
+              <img
+                src={imagePath}
+                alt="Profile option"
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
 
       <div className="w-full">
         <label className="block text-sm font-medium text-gray-700 mb-2">

@@ -8,6 +8,8 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const file = formData.get('image') as File;
     const slideCount = parseInt(formData.get('slideCount') as string);
+    const username = formData.get('username') as string || 'your_account';
+    const profileImage = formData.get('profileImage') as string || '/users/user_1.jpeg';
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
@@ -26,6 +28,8 @@ export async function POST(request: NextRequest) {
     const metadata = {
       imageUrl: `/uploads/${filename}`,
       slideCount,
+      username,
+      profileImage,
     };
     const metadataPath = join(process.cwd(), 'public', 'uploads', `${id}.json`);
     await writeFile(metadataPath, JSON.stringify(metadata));
@@ -34,6 +38,8 @@ export async function POST(request: NextRequest) {
       id,
       imageUrl: `/uploads/${filename}`,
       slideCount,
+      username,
+      profileImage,
     });
   } catch (error) {
     console.error('Upload error:', error);
