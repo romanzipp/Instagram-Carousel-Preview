@@ -27,13 +27,15 @@ export default function Carousel({ imageUrl, slideCount }: CarouselProps) {
       >
         {Array.from({ length: slideCount }).map((_, index) => (
           <SwiperSlide key={index}>
-            <div className="w-full h-full overflow-hidden bg-black">
+            <div className="w-full h-full overflow-hidden bg-black relative">
               <img
                 src={imageUrl}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-auto object-cover"
+                className="absolute top-0 left-0 w-full object-cover"
                 style={{
-                  transform: `translateY(-${(index / slideCount) * 100}%)`,
+                  height: `${slideCount * 100}%`,
+                  objectPosition: 'center top',
+                  transform: `translateY(-${index * (100 / slideCount)}%)`,
                 }}
               />
             </div>
