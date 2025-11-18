@@ -6,6 +6,7 @@ import Header from '@/components/instagram/Header';
 import Stories from '@/components/instagram/Stories';
 import PostHeader from '@/components/instagram/PostHeader';
 import Carousel from '@/components/instagram/Carousel';
+import PostActions from '@/components/instagram/PostActions';
 import PostDetails from '@/components/instagram/PostDetails';
 import Navigation from '@/components/instagram/Navigation';
 import { getPreviewData } from '@/lib/urlGenerator';
@@ -55,6 +56,7 @@ export default function PreviewPage() {
           <Stories />
           <PostHeader />
           <Carousel slides={slides} />
+          <PostActions />
           <PostDetails />
         </div>
         <Navigation />

@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+    <header className="flex items-center justify-between px-4 py-3">
       <div className="w-6 h-6">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <line x1="12" y1="5" x2="12" y2="19" />
@@ -8,7 +8,7 @@ export default function Header() {
         </svg>
       </div>
 
-      <div className="text-base font-semibold">
+      <div className="text-lg font-semibold">
         For you
       </div>
 
