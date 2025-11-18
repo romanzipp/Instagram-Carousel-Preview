@@ -1,6 +1,6 @@
 export default function Navigation() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 flex items-center justify-around px-4 py-2 bg-white border-t border-gray-200">
+    <nav className="flex items-center justify-around px-4 py-3 bg-white border-t border-gray-200">
       <div className="w-6 h-6">
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M9.005 16.545a2.997 2.997 0 0 1 2.997-2.997A2.997 2.997 0 0 1 15 16.545V22h7V11.543L12 2 2 11.543V22h7.005Z" />
