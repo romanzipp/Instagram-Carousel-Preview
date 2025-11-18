@@ -23,8 +23,8 @@ Preview how your multi-slide images will look in the Instagram carousel format b
 Pull and run the latest version from GitHub Container Registry:
 
 ```bash
-docker pull ghcr.io/roman/carousel-preview:latest
-docker run -p 3000:3000 -v $(pwd)/uploads:/app/public/uploads ghcr.io/roman/carousel-preview:latest
+docker pull ghcr.io/romanzipp/instagram-carousel-preview:latest
+docker run -p 3000:3000 -v $(pwd)/uploads:/app/public/uploads ghcr.io/romanzipp/instagram-carousel-preview:latest
 ```
 
 Or with Docker Compose:
@@ -32,7 +32,7 @@ Or with Docker Compose:
 ```yaml
 services:
   app:
-    image: ghcr.io/roman/carousel-preview:latest
+    image: ghcr.io/romanzipp/instagram-carousel-preview:latest
     ports:
       - "3000:3000"
     volumes:
